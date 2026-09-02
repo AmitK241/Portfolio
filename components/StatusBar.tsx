@@ -43,7 +43,7 @@ export default function StatusBar() {
   }, []);
 
   return (
-    <div className="fixed inset-x-0 top-0 z-50 hidden border-b border-line/80 bg-bg/85 backdrop-blur-md sm:block">
+    <aside aria-label="Live system status" className="fixed inset-x-0 top-0 z-50 hidden border-b border-line/80 bg-bg/85 backdrop-blur-md sm:block">
       <div className="section-wrap flex h-9 items-center justify-between font-mono text-[11px] text-dim">
         <div className="flex items-center gap-5">
           <span className="flex items-center gap-1.5 font-medium text-green">
@@ -69,6 +69,6 @@ export default function StatusBar() {
         style={{ scaleX }}
         className="h-[2px] w-full origin-left bg-gradient-to-r from-violet-dim via-violet-soft to-amber"
       />
-    </div>
+    </aside>
   );
 }

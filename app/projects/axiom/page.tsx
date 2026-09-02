@@ -163,7 +163,7 @@ export default function AxiomCaseStudy() {
   return (
     <>
       <Nav />
-      <main className="min-h-screen pt-28 pb-24 sm:pt-36 lg:pt-40">
+      <main id="main-content" tabIndex={-1} className="min-h-screen pt-28 pb-24 sm:pt-36 lg:pt-40">
         <div className="section-wrap">
           {/* Breadcrumb / Back Link */}
           <div className="mb-8">

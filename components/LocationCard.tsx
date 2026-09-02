@@ -26,7 +26,7 @@ export default function LocationCard() {
           <Compass size={12} className="text-violet-soft" />
           Location &middot; Radar
         </p>
-        <span className="font-mono text-[10px] uppercase tracking-wider text-dim">
+        <span className="font-mono text-[11px] uppercase tracking-wider text-dim">
           {hovering ? "Tracking active" : "Hover to ping"}
         </span>
       </div>
@@ -71,7 +71,7 @@ export default function LocationCard() {
             <MapPin size={15} className="text-violet-soft" />
             <span>Prayagraj, Uttar Pradesh</span>
           </div>
-          <span className="rounded border border-line bg-panel px-2 py-0.5 font-mono text-[10px] uppercase text-dim">
+          <span className="rounded border border-line bg-panel px-2 py-0.5 font-mono text-[11px] uppercase text-dim">
             GMT+5:30
           </span>
         </div>

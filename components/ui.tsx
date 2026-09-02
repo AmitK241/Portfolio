@@ -76,7 +76,7 @@ export function StatusPill({
   const s = map[status];
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider ${s.border}`}
+      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wider ${s.border}`}
     >
       <span className={`status-dot ${s.color}`} />
       <span className={`font-semibold ${s.text}`}>{s.label}</span>

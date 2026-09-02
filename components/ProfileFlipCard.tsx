@@ -24,12 +24,19 @@ export default function ProfileFlipCard() {
       onMouseEnter={() => setFlipped(true)}
       onMouseLeave={() => setFlipped(false)}
     >
-      <button
-        type="button"
+      <div
+        role="button"
+        tabIndex={0}
         onClick={() => setFlipped((v) => !v)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setFlipped((v) => !v);
+          }
+        }}
         aria-label="Flip profile card to see contact information"
         aria-pressed={flipped}
-        className="relative block h-[380px] w-[290px] cursor-pointer text-left [transform-style:preserve-3d] focus:outline-none sm:h-[440px] sm:w-[320px]"
+        className="relative block h-[380px] w-[290px] cursor-pointer text-left [transform-style:preserve-3d] focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-soft focus-visible:ring-offset-2 focus-visible:ring-offset-bg sm:h-[440px] sm:w-[320px]"
       >
         <motion.div
           animate={{ rotateY: flipped ? 180 : 0 }}
@@ -43,7 +50,7 @@ export default function ProfileFlipCard() {
             <div className="absolute inset-0 z-10 rounded-2xl ring-1 ring-inset ring-white/15" />
             <Image
               src="/photo.jpg"
-              alt={profile.name}
+              alt={`Portrait photo of ${profile.name}`}
               fill
               sizes="(min-width: 640px) 320px, 290px"
               className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
@@ -51,12 +58,12 @@ export default function ProfileFlipCard() {
             />
             {/* Top pill badges */}
             <div className="absolute inset-x-0 top-0 z-20 flex items-center justify-between p-4">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/50 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-white backdrop-blur-md">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/50 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-white backdrop-blur-md">
                 <span className="status-dot bg-green" />
                 Available 2026-27
               </span>
-              <span className="flex items-center gap-1.5 rounded-full border border-white/20 bg-black/50 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-white/80 backdrop-blur-md transition-opacity group-hover:opacity-100 sm:opacity-75">
-                <RotateCw size={11} className="transition-transform group-hover:rotate-180 duration-500" />
+              <span className="flex items-center gap-1.5 rounded-full border border-white/20 bg-black/50 px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider text-white/80 backdrop-blur-md transition-opacity group-hover:opacity-100 sm:opacity-75">
+                <RotateCw size={11} aria-hidden="true" className="transition-transform group-hover:rotate-180 duration-500" />
                 Flip
               </span>
             </div>
@@ -84,7 +91,7 @@ export default function ProfileFlipCard() {
             <div>
               <div className="flex items-center justify-between border-b border-line pb-3">
                 <p className="eyebrow !text-violet-soft">Profile &middot; Connect</p>
-                <span className="flex items-center gap-1 font-mono text-[10px] text-dim">
+                <span className="flex items-center gap-1 font-mono text-[11px] text-dim">
                   <RotateCw size={10} /> flip back
                 </span>
               </div>
@@ -92,6 +99,7 @@ export default function ProfileFlipCard() {
               <div className="mt-5 space-y-3.5 font-mono text-[12.5px]">
                 <a
                   href={socials.email}
+                  tabIndex={flipped ? 0 : -1}
                   onClick={(e) => e.stopPropagation()}
                   className="group flex items-center justify-between rounded-lg border border-line bg-panel2/60 px-3 py-2 text-ink transition-colors hover:border-violet-soft hover:text-violet-soft"
                 >
@@ -106,6 +114,7 @@ export default function ProfileFlipCard() {
                   href={socials.github}
                   target="_blank"
                   rel="noreferrer"
+                  tabIndex={flipped ? 0 : -1}
                   onClick={(e) => e.stopPropagation()}
                   className="group flex items-center justify-between rounded-lg border border-line bg-panel2/60 px-3 py-2 text-ink transition-colors hover:border-violet-soft hover:text-violet-soft"
                 >
@@ -120,14 +129,16 @@ export default function ProfileFlipCard() {
                   href={socials.linkedin}
                   target="_blank"
                   rel="noreferrer"
+                  tabIndex={flipped ? 0 : -1}
                   onClick={(e) => e.stopPropagation()}
+                  aria-label="LinkedIn profile: Amit Kumar"
                   className="group flex items-center justify-between rounded-lg border border-line bg-panel2/60 px-3 py-2 text-ink transition-colors hover:border-violet-soft hover:text-violet-soft"
                 >
                   <div className="flex items-center gap-2.5">
-                    <Linkedin size={14} className="shrink-0 text-violet-soft" />
+                    <Linkedin size={14} aria-hidden="true" className="shrink-0 text-violet-soft" />
                     <span>in/amit-kumar-3a...</span>
                   </div>
-                  <ArrowUpRight size={13} className="shrink-0 text-dim group-hover:text-violet-soft" />
+                  <ArrowUpRight size={13} aria-hidden="true" className="shrink-0 text-dim group-hover:text-violet-soft" />
                 </a>
               </div>
 
@@ -148,13 +159,13 @@ export default function ProfileFlipCard() {
             </div>
 
             <div className="border-t border-line pt-3 text-center">
-              <span className="font-mono text-[10px] uppercase tracking-wider text-dim">
+              <span className="font-mono text-[11px] uppercase tracking-wider text-dim">
                 Click anywhere on card to flip
               </span>
             </div>
           </div>
         </motion.div>
-      </button>
+      </div>
     </div>
   );
 }

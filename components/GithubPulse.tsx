@@ -130,7 +130,7 @@ export default function GithubPulse() {
                   <CountUp value={value} />
                 )}
               </p>
-              <p className="mt-1 font-mono text-[9.5px] uppercase tracking-wider text-dim">{label}</p>
+              <p className="mt-1 font-mono text-[11px] uppercase tracking-wider text-dim">{label}</p>
             </div>
           ))}
         </div>

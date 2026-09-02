@@ -34,7 +34,7 @@ export default function Hero() {
                 <span>Available for 2026&ndash;27 Placements</span>
               </span>
               <span className="inline-flex items-center gap-1 rounded-full border border-violet/30 bg-violet/10 px-3 py-1 font-mono text-[11px] text-violet-soft">
-                <Sparkles size={11} /> MNNIT CSE
+                <Sparkles size={11} aria-hidden="true" /> MNNIT CSE
               </span>
             </motion.div>
 
@@ -70,7 +70,7 @@ export default function Hero() {
                 className="group inline-flex items-center gap-2 rounded-full bg-violet px-5 py-3 font-mono text-[11.5px] uppercase tracking-wider text-white shadow-[0_10px_25px_-5px_rgb(var(--c-violet)/0.4)] transition-all hover:bg-violet-soft hover:shadow-[0_14px_30px_-5px_rgb(var(--c-violet)/0.6)]"
               >
                 <span>View deployed work</span>
-                <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
 
               <a
@@ -79,7 +79,7 @@ export default function Hero() {
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-line2 bg-panel/70 px-4 py-3 font-mono text-[11.5px] uppercase tracking-wider text-ink backdrop-blur-sm transition-all hover:border-violet-soft hover:bg-panel2 hover:text-violet-soft"
               >
-                <Github size={14} />
+                <Github size={14} aria-hidden="true" />
                 <span>GitHub</span>
               </a>
 
@@ -89,7 +89,7 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-line2 bg-panel/70 px-4 py-3 font-mono text-[11.5px] uppercase tracking-wider text-ink backdrop-blur-sm transition-all hover:border-violet-soft hover:bg-panel2 hover:text-violet-soft"
               >
-                <FileText size={14} />
+                <FileText size={14} aria-hidden="true" />
                 <span>Resume</span>
               </a>
 
@@ -137,7 +137,7 @@ export default function Hero() {
               <span className="h-2.5 w-2.5 rounded-full bg-green/80" />
               <span className="ml-2 font-mono text-[11px] text-muted">terminal — telemetry.log</span>
             </div>
-            <span className="hidden font-mono text-[10px] uppercase tracking-wider text-dim sm:inline">
+            <span className="hidden font-mono text-[11px] uppercase tracking-wider text-dim sm:inline">
               session: live &middot; ready
             </span>
           </div>

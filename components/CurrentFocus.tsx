@@ -26,12 +26,12 @@ export default function CurrentFocus() {
           >
             <div className="flex items-center justify-between border-b border-line bg-panel2/40 px-5 py-3.5">
               <div className="flex items-center gap-2">
-                <BookOpen size={15} className="text-violet-soft" />
-                <span className="font-mono text-[11px] uppercase tracking-wider text-ink font-semibold">
+                <BookOpen size={15} aria-hidden="true" className="text-violet-soft" />
+                <h3 className="font-mono text-[11px] uppercase tracking-wider text-ink font-semibold">
                   runtime.learning[]
-                </span>
+                </h3>
               </div>
-              <span className="font-mono text-[10px] text-dim">6 topics</span>
+              <span className="font-mono text-[11px] text-dim">6 topics</span>
             </div>
 
             <div className="p-6">
@@ -73,12 +73,12 @@ export default function CurrentFocus() {
           >
             <div className="flex items-center justify-between border-b border-line bg-panel2/40 px-5 py-3.5">
               <div className="flex items-center gap-2">
-                <Hammer size={15} className="text-amber" />
-                <span className="font-mono text-[11px] uppercase tracking-wider text-ink font-semibold">
+                <Hammer size={15} aria-hidden="true" className="text-amber" />
+                <h3 className="font-mono text-[11px] uppercase tracking-wider text-ink font-semibold">
                   runtime.building[]
-                </span>
+                </h3>
               </div>
-              <span className="font-mono text-[10px] text-dim">4 active</span>
+              <span className="font-mono text-[11px] text-dim">4 active</span>
             </div>
 
             <div className="p-6">

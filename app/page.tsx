@@ -17,7 +17,7 @@ export default function Home() {
     <>
       <StatusBar />
       <Nav />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <Hero />
         <MarqueeStrip />
         <About />

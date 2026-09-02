@@ -39,7 +39,7 @@
   --c-line2: 203 208 220;
   --c-ink: 15 18 26;
   --c-muted: 65 72 86;
-  --c-dim: 115 123 140;
+  --c-dim: 90 98 117;
   --c-violet: 99 85 231;
   --c-violet-soft: 79 63 224;
   --c-violet-dim: 129 116 244;
@@ -76,6 +76,10 @@
   --c-grad-3: var(--c-green);
 }
 
+[data-theme="matrix"] .bg-violet {
+  color: #04140A;
+}
+
 [data-theme="paper"] {
   --font-display-active: var(--font-fraunces);
   --c-bg: 245 240 230;
@@ -85,11 +89,11 @@
   --c-line2: 186 171 150;
   --c-ink: 35 29 22;
   --c-muted: 72 61 50;
-  --c-dim: 128 114 98;
+  --c-dim: 107 93 77;
   --c-violet: 168 61 28;
   --c-violet-soft: 133 45 17;
   --c-violet-dim: 203 88 50;
-  --c-amber: 184 110 16;
+  --c-amber: 143 82 9;
   --c-green: 74 114 56;
   --c-red: 185 43 39;
 

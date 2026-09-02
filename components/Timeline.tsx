@@ -44,7 +44,7 @@ export default function Timeline() {
                         {entry.org}
                       </span>
                       {isWinner && (
-                        <span className="inline-flex items-center gap-1 rounded-full border border-amber/30 bg-amber/10 px-2 py-0.5 font-mono text-[10px] text-amber">
+                        <span className="inline-flex items-center gap-1 rounded-full border border-amber/30 bg-amber/10 px-2 py-0.5 font-mono text-[11px] text-amber">
                           <Award size={11} />
                           Award Winner
                         </span>

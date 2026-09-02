@@ -34,7 +34,7 @@ export default function About() {
               </p>
 
               <div className="mt-6 flex items-start gap-3 rounded-xl border border-line bg-panel2/50 p-4">
-                <Target size={18} className="mt-0.5 shrink-0 text-violet-soft" />
+                <Target size={18} aria-hidden="true" className="mt-0.5 shrink-0 text-violet-soft" />
                 <div>
                   <p className="font-mono text-[11px] uppercase tracking-wider text-dim">Core Philosophy</p>
                   <p className="mt-0.5 text-sm font-medium text-ink">{profile.philosophy}</p>
@@ -66,14 +66,14 @@ export default function About() {
                 <div className="flex items-center justify-between border-b border-line pb-4">
                   <div className="flex items-center gap-2.5">
                     <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-line2 bg-panel2 text-violet-soft">
-                      <GraduationCap size={18} />
+                      <GraduationCap size={18} aria-hidden="true" />
                     </div>
                     <div>
-                      <p className="font-display text-sm font-semibold text-ink">Academic Status</p>
+                      <h3 className="font-display text-sm font-semibold text-ink">Academic Status</h3>
                       <p className="font-mono text-[10.5px] text-dim">Institutional Dossier</p>
                     </div>
                   </div>
-                  <span className="rounded-full border border-green/30 bg-green/10 px-2.5 py-0.5 font-mono text-[10px] uppercase font-medium text-green">
+                  <span className="rounded-full border border-green/30 bg-green/10 px-2.5 py-0.5 font-mono text-[11px] uppercase font-medium text-green">
                     Final Year
                   </span>
                 </div>
@@ -91,17 +91,17 @@ export default function About() {
 
               {/* Roles Amit is seeking */}
               <div className="mt-6 border-t border-line pt-5">
-                <p className="eyebrow mb-3.5 flex items-center gap-1.5 !text-dim">
-                  <Sparkles size={11} className="text-violet-soft" />
+                <h3 className="eyebrow mb-3.5 flex items-center gap-1.5 !text-dim">
+                  <Sparkles size={11} aria-hidden="true" className="text-violet-soft" />
                   Target Placement Roles
-                </p>
+                </h3>
                 <div className="space-y-2">
                   {profile.openTo.map((role) => (
                     <div
                       key={role}
                       className="group flex items-start gap-2.5 rounded-lg border border-line/60 bg-panel2/30 p-2.5 transition-colors hover:border-line2 hover:bg-panel2/60"
                     >
-                      <CheckCircle2 size={14} className="mt-0.5 shrink-0 text-violet-soft" />
+                      <CheckCircle2 size={14} aria-hidden="true" className="mt-0.5 shrink-0 text-violet-soft" />
                       <span className="font-mono text-[12px] leading-snug text-muted group-hover:text-ink">
                         {role}
                       </span>

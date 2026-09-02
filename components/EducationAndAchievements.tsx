@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Award, BadgeCheck, Calendar, Eye, GraduationCap, ShieldCheck, X } from "lucide-react";
@@ -9,20 +9,53 @@ import { SectionHeading } from "./ui";
 
 export default function EducationAndAchievements() {
   const [previewCert, setPreviewCert] = useState<Certification | null>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+  const modalRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    if (!previewCert) return;
+
+    const timer = setTimeout(() => {
+      closeButtonRef.current?.focus();
+    }, 50);
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setPreviewCert(null);
+        return;
+      }
+
+      if (e.key === "Tab" && modalRef.current) {
+        const focusable = modalRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
       }
     };
-    if (previewCert) {
-      document.addEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "hidden";
-    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+
     return () => {
+      clearTimeout(timer);
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
+      triggerRef.current?.focus();
     };
   }, [previewCert]);
 
@@ -52,7 +85,7 @@ export default function EducationAndAchievements() {
                   </div>
                   <p className="eyebrow !text-violet-soft">Education</p>
                 </div>
-                <span className="rounded-full border border-green/30 bg-green/10 px-2 py-0.5 font-mono text-[9.5px] uppercase text-green">
+                <span className="rounded-full border border-green/30 bg-green/10 px-2 py-0.5 font-mono text-[11px] uppercase text-green">
                   Enrolled
                 </span>
               </div>
@@ -86,11 +119,11 @@ export default function EducationAndAchievements() {
               <div className="mb-5 flex items-center justify-between border-b border-line pb-3.5">
                 <div className="flex items-center gap-2">
                   <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-violet/30 bg-violet/10 text-violet-soft">
-                    <BadgeCheck size={16} />
+                    <BadgeCheck size={16} aria-hidden="true" />
                   </div>
-                  <p className="eyebrow !text-violet-soft">Certifications</p>
+                  <h3 className="eyebrow !text-violet-soft">Certifications</h3>
                 </div>
-                <span className="flex items-center gap-1 font-mono text-[10px] text-dim">
+                <span className="flex items-center gap-1 font-mono text-[11px] text-dim">
                   <ShieldCheck size={12} className="text-green" /> Verified
                 </span>
               </div>
@@ -132,7 +165,10 @@ export default function EducationAndAchievements() {
                     <button
                       key={cert.name}
                       type="button"
-                      onClick={() => setPreviewCert(cert)}
+                      onClick={(e) => {
+                        triggerRef.current = e.currentTarget;
+                        setPreviewCert(cert);
+                      }}
                       className="group block w-full rounded-xl border border-line bg-panel2/40 p-3.5 text-left transition-all hover:border-violet-soft hover:bg-panel2/80 cursor-pointer"
                     >
                       <div className="flex items-start justify-between gap-2">
@@ -179,11 +215,11 @@ export default function EducationAndAchievements() {
               <div className="mb-5 flex items-center justify-between border-b border-line pb-3.5">
                 <div className="flex items-center gap-2">
                   <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-violet/30 bg-violet/10 text-violet-soft">
-                    <Award size={16} />
+                    <Award size={16} aria-hidden="true" />
                   </div>
-                  <p className="eyebrow !text-violet-soft">Honors</p>
+                  <h3 className="eyebrow !text-violet-soft">Honors</h3>
                 </div>
-                <span className="rounded-full border border-amber/30 bg-amber/10 px-2 py-0.5 font-mono text-[9.5px] uppercase text-amber">
+                <span className="rounded-full border border-amber/30 bg-amber/10 px-2 py-0.5 font-mono text-[11px] uppercase text-amber">
                   Highlights
                 </span>
               </div>
@@ -226,6 +262,10 @@ export default function EducationAndAchievements() {
       <AnimatePresence>
         {previewCert && previewCert.image && (
           <motion.div
+            ref={modalRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Certificate preview: ${previewCert.name}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -258,6 +298,7 @@ export default function EducationAndAchievements() {
                   </div>
                 </div>
                 <button
+                  ref={closeButtonRef}
                   type="button"
                   onClick={() => setPreviewCert(null)}
                   className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-line bg-panel2/80 text-muted transition-colors hover:border-line2 hover:text-ink cursor-pointer"
@@ -272,7 +313,7 @@ export default function EducationAndAchievements() {
                 <div className="relative flex max-h-[70vh] w-full items-center justify-center">
                   <Image
                     src={previewCert.image}
-                    alt={previewCert.name}
+                    alt={`Certificate of completion for ${previewCert.name}`}
                     width={1024}
                     height={724}
                     className="max-h-[70vh] w-auto max-w-full rounded-lg border border-line/60 object-contain shadow-lg"

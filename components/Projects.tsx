@@ -200,12 +200,13 @@ export default function Projects() {
                           }`}
                         >
                           <span className="flex items-center gap-2">
-                            {link.label.toLowerCase().includes("github") && <Github size={14} />}
-                            {isLive && <ExternalLink size={14} />}
+                            {link.label.toLowerCase().includes("github") && <Github size={14} aria-hidden="true" />}
+                            {isLive && <ExternalLink size={14} aria-hidden="true" />}
                             <span>{link.label}</span>
                           </span>
                           <ArrowUpRight
                             size={14}
+                            aria-hidden="true"
                             className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                           />
                         </a>
@@ -293,6 +294,7 @@ export default function Projects() {
                         <span>{link.label}</span>
                         <ArrowUpRight
                           size={12}
+                          aria-hidden="true"
                           className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                         />
                       </a>

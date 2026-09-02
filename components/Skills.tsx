@@ -30,7 +30,7 @@ export default function Skills() {
                 <div>
                   <div className="mb-3 flex items-center justify-between">
                     <p className="eyebrow !text-violet-soft">{group.category}</p>
-                    <span className="font-mono text-[10px] text-dim">{group.items.length} tools</span>
+                    <span className="font-mono text-[11px] text-dim">{group.items.length} tools</span>
                   </div>
                   <div className="flex flex-wrap gap-1.5">
                     {group.items.map((item) => (

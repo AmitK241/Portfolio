@@ -17,6 +17,7 @@ export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => setMounted(true), []);
 
@@ -28,6 +29,18 @@ export default function ThemeToggle() {
     return () => document.removeEventListener("mousedown", onClick);
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        setOpen(false);
+        buttonRef.current?.focus();
+      }
+    }
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
   if (!mounted) {
     return <div className="h-9 w-24 rounded-full border border-line2/60 bg-panel/50" aria-hidden />;
   }
@@ -38,9 +51,11 @@ export default function ThemeToggle() {
   return (
     <div className="relative" ref={ref}>
       <button
+        ref={buttonRef}
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-haspopup="listbox"
+        aria-label={`Select visual theme, currently set to ${active.label}`}
         className="flex items-center gap-2 rounded-full border border-line2 bg-panel/60 px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-wider text-ink backdrop-blur-sm transition-all hover:border-violet-soft hover:text-violet-soft"
       >
         <ActiveIcon size={13} className="text-violet-soft" />
@@ -79,7 +94,7 @@ export default function ThemeToggle() {
                   <Icon size={14} className={`shrink-0 ${isActive ? "text-violet-soft" : "text-dim group-hover:text-ink"}`} />
                   <div className="flex-1 min-w-0">
                     <p className="text-[11.5px] uppercase tracking-wider font-semibold">{opt.label}</p>
-                    <p className="text-[9.5px] text-dim truncate">{opt.desc}</p>
+                    <p className="text-[11px] text-dim truncate">{opt.desc}</p>
                   </div>
                   {isActive && <Check size={13} className="text-violet-soft shrink-0" />}
                 </button>

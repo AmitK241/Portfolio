@@ -37,7 +37,7 @@ export default function Faq() {
           <HelpCircle size={15} className="text-violet-soft" />
           <span className="font-display text-sm font-semibold text-ink">Frequently Asked Questions</span>
         </div>
-        <span className="font-mono text-[10px] uppercase text-dim">5 queries</span>
+        <span className="font-mono text-[11px] uppercase text-dim">5 queries</span>
       </div>
 
       <div className="divide-y divide-line/80">

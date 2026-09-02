@@ -28,15 +28,36 @@ export default function AskAssistant() {
   const [typing, setTyping] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const prevOpenRef = useRef(false);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
   }, [messages, typing]);
 
   useEffect(() => {
-    if (open) {
-      setTimeout(() => inputRef.current?.focus(), 150);
+    if (!open) {
+      if (prevOpenRef.current) {
+        triggerRef.current?.focus();
+      }
+      prevOpenRef.current = false;
+      return;
     }
+
+    prevOpenRef.current = true;
+    const timer = setTimeout(() => inputRef.current?.focus(), 150);
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
   }, [open]);
 
   function ask(question: string) {
@@ -72,11 +93,14 @@ export default function AskAssistant() {
     <>
       {/* Floating Trigger Button */}
       <motion.button
+        ref={triggerRef}
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.5, duration: 0.4 }}
         onClick={() => setOpen((v) => !v)}
         aria-label="Ask about Amit AI Assistant"
+        aria-expanded={open}
+        aria-haspopup="dialog"
         className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full border border-violet-soft/40 bg-violet text-white shadow-[0_12px_36px_-6px_rgb(var(--c-violet)/0.6)] transition-transform hover:scale-105 active:scale-95"
       >
         <AnimatePresence mode="wait" initial={false}>
@@ -107,6 +131,8 @@ export default function AskAssistant() {
       <AnimatePresence>
         {open && (
           <motion.div
+            role="dialog"
+            aria-label="AI Portfolio Assistant"
             initial={{ opacity: 0, y: 20, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.96 }}
@@ -124,7 +150,7 @@ export default function AskAssistant() {
                     <span>Portfolio Assistant</span>
                     <span className="status-dot bg-green" />
                   </div>
-                  <p className="font-mono text-[9.5px] uppercase tracking-wider text-dim">
+                  <p className="font-mono text-[11px] uppercase tracking-wider text-dim">
                     Deterministic QA &middot; Offline
                   </p>
                 </div>
@@ -198,7 +224,7 @@ export default function AskAssistant() {
               {/* Suggested Chips */}
               {messages.length <= 3 && !typing && (
                 <div className="pt-2">
-                  <p className="eyebrow mb-2 !text-[9.5px]">Suggested Queries</p>
+                  <p className="eyebrow mb-2 !text-[11px]">Suggested Queries</p>
                   <div className="flex flex-wrap gap-1.5">
                     {suggestedQuestions.map((q) => (
                       <button
@@ -228,6 +254,7 @@ export default function AskAssistant() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask about AXIOM, ML stack, placements..."
+                aria-label="Ask a question about Amit's background"
                 className="flex-1 rounded-full border border-line2 bg-panel px-4 py-2 text-[12.5px] text-ink placeholder:text-dim focus:border-violet-soft focus:outline-none"
               />
               <button
