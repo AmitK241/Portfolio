@@ -1,18 +1,38 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowUpRight, Award, BadgeCheck, CheckCircle2, GraduationCap, ShieldCheck } from "lucide-react";
-import { achievements, certifications, education } from "@/lib/data";
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight, Award, BadgeCheck, Calendar, Eye, GraduationCap, ShieldCheck, X } from "lucide-react";
+import { achievements, certifications, education, type Certification } from "@/lib/data";
 import { SectionHeading } from "./ui";
 
 export default function EducationAndAchievements() {
+  const [previewCert, setPreviewCert] = useState<Certification | null>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setPreviewCert(null);
+      }
+    };
+    if (previewCert) {
+      document.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
+    }
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [previewCert]);
+
   return (
     <section id="education" className="scroll-mt-28 border-t border-line py-24 sm:py-32">
       <div className="section-wrap">
         <SectionHeading
           eyebrow="04 / Origin"
           title="Education, certifications &amp; honors"
-          description="Academic foundation at MNNIT Allahabad, verified credentials in deep learning, and recognized hackathon honors."
+          description="Academic foundation at MNNIT Allahabad, verified credentials in deep learning &amp; software engineering, and recognized hackathon honors."
         />
 
         <div className="grid gap-6 lg:grid-cols-3">
@@ -50,7 +70,7 @@ export default function EducationAndAchievements() {
             </div>
 
             <div className="mt-6 border-t border-line/60 pt-3.5 font-mono text-[11px] text-muted">
-              Focus: Distributed Systems, Concurrency, DBMS
+              Core Subjects: OOPs &middot; OS &middot; CN &middot; DBMS &middot; DSA
             </div>
           </motion.div>
 
@@ -75,36 +95,75 @@ export default function EducationAndAchievements() {
                 </span>
               </div>
 
-              <div className="space-y-4">
-                {certifications.map((cert) => (
-                  <a
-                    key={cert.name}
-                    href={cert.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="group block rounded-xl border border-line bg-panel2/40 p-4 transition-all hover:border-violet-soft hover:bg-panel2/80"
-                  >
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <p className="text-sm font-semibold text-ink group-hover:text-violet-soft transition-colors">
-                          {cert.name}
-                        </p>
-                        <p className="mt-1 font-mono text-[11.5px] text-dim">
-                          Issuer: {cert.issuer}
-                        </p>
+              <div className="space-y-3">
+                {certifications.map((cert) =>
+                  cert.url ? (
+                    <a
+                      key={cert.name}
+                      href={cert.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="group block rounded-xl border border-line bg-panel2/40 p-3.5 transition-all hover:border-violet-soft hover:bg-panel2/80"
+                    >
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="min-w-0 flex-1">
+                          <p className="text-[13px] font-semibold leading-snug text-ink transition-colors group-hover:text-violet-soft">
+                            {cert.name}
+                          </p>
+                          <div className="mt-1.5 flex flex-wrap items-center justify-between gap-x-2 gap-y-1">
+                            <p className="font-mono text-[11px] text-dim">
+                              Issuer: <span className="text-muted">{cert.issuer}</span>
+                            </p>
+                            {cert.date && (
+                              <span className="flex items-center gap-1 font-mono text-[11px] text-dim">
+                                <Calendar size={11} className="shrink-0" />
+                                {cert.date}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                        <ArrowUpRight
+                          size={14}
+                          className="mt-0.5 shrink-0 text-dim transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-violet-soft"
+                        />
                       </div>
-                      <ArrowUpRight
-                        size={15}
-                        className="mt-0.5 shrink-0 text-dim transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-violet-soft"
-                      />
-                    </div>
-                  </a>
-                ))}
+                    </a>
+                  ) : cert.image ? (
+                    <button
+                      key={cert.name}
+                      type="button"
+                      onClick={() => setPreviewCert(cert)}
+                      className="group block w-full rounded-xl border border-line bg-panel2/40 p-3.5 text-left transition-all hover:border-violet-soft hover:bg-panel2/80 cursor-pointer"
+                    >
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="min-w-0 flex-1">
+                          <p className="text-[13px] font-semibold leading-snug text-ink transition-colors group-hover:text-violet-soft">
+                            {cert.name}
+                          </p>
+                          <div className="mt-1.5 flex flex-wrap items-center justify-between gap-x-2 gap-y-1">
+                            <p className="font-mono text-[11px] text-dim">
+                              Issuer: <span className="text-muted">{cert.issuer}</span>
+                            </p>
+                            {cert.date && (
+                              <span className="flex items-center gap-1 font-mono text-[11px] text-dim">
+                                <Calendar size={11} className="shrink-0" />
+                                {cert.date}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                        <div className="mt-0.5 flex shrink-0 items-center text-dim transition-colors group-hover:text-violet-soft">
+                          <Eye size={14} className="transition-transform group-hover:scale-110" />
+                        </div>
+                      </div>
+                    </button>
+                  ) : null
+                )}
               </div>
             </div>
 
             <div className="mt-6 border-t border-line/60 pt-3.5 font-mono text-[11px] text-dim">
-              Click to view verified Coursera credential
+              Click to verify credentials or preview certificate
             </div>
           </motion.div>
 
@@ -157,11 +216,86 @@ export default function EducationAndAchievements() {
             </div>
 
             <div className="mt-6 border-t border-line/60 pt-3.5 font-mono text-[11px] text-dim">
-              Global hackathons &amp; verified competitive rankings
+              Global hackathons &amp; competitive rankings
             </div>
           </motion.div>
         </div>
       </div>
+
+      {/* Certificate Lightbox Modal */}
+      <AnimatePresence>
+        {previewCert && previewCert.image && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 sm:p-6"
+            onClick={() => setPreviewCert(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              transition={{ duration: 0.2 }}
+              className="relative flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl border border-line bg-panel shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Modal Header */}
+              <div className="flex items-center justify-between border-b border-line px-5 py-4 sm:px-6">
+                <div className="min-w-0 pr-4">
+                  <h3 className="font-display text-base font-bold tracking-tight text-ink sm:text-lg">
+                    {previewCert.name}
+                  </h3>
+                  <div className="mt-1 flex items-center gap-2 font-mono text-xs text-dim">
+                    <span>{previewCert.issuer}</span>
+                    {previewCert.date && (
+                      <>
+                        <span>·</span>
+                        <span>{previewCert.date}</span>
+                      </>
+                    )}
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setPreviewCert(null)}
+                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-line bg-panel2/80 text-muted transition-colors hover:border-line2 hover:text-ink cursor-pointer"
+                  aria-label="Close modal"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              {/* Modal Image Body */}
+              <div className="relative flex items-center justify-center overflow-auto bg-black/40 p-4 sm:p-6">
+                <div className="relative flex max-h-[70vh] w-full items-center justify-center">
+                  <Image
+                    src={previewCert.image}
+                    alt={previewCert.name}
+                    width={1024}
+                    height={724}
+                    className="max-h-[70vh] w-auto max-w-full rounded-lg border border-line/60 object-contain shadow-lg"
+                    priority
+                  />
+                </div>
+              </div>
+
+              {/* Modal Footer */}
+              <div className="flex items-center justify-between border-t border-line/60 bg-panel2/40 px-5 py-3 sm:px-6 font-mono text-[11px] text-dim">
+                <span>Participation &amp; Project Recognition</span>
+                <button
+                  type="button"
+                  onClick={() => setPreviewCert(null)}
+                  className="text-violet-soft transition-colors hover:text-ink cursor-pointer"
+                >
+                  Close preview
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

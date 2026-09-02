@@ -11,7 +11,7 @@ export default function Skills() {
       <div className="section-wrap">
         <SectionHeading
           eyebrow="01 / Stack"
-          title="Tech stack &amp; engineering depth"
+          title="Tech stack &amp; proficiency"
           description="Tools I reach for daily across async multi-agent orchestrations, full-stack web platforms, and deep learning pipelines."
         />
 
@@ -54,9 +54,6 @@ export default function Skills() {
                 <Cpu size={16} className="text-violet-soft" />
                 <p className="font-display text-base font-bold text-ink">Proficiency Matrix</p>
               </div>
-              <span className="rounded-full border border-violet/30 bg-violet/10 px-2.5 py-0.5 font-mono text-[10px] text-violet-soft">
-                Verified Skills
-              </span>
             </div>
 
             <div className="space-y-5">

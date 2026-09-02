@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Github, Linkedin, Mail, Sparkles } from "lucide-react";
+import { ArrowUpRight, FileText, Github, Linkedin, Mail, Sparkles } from "lucide-react";
 import { liveMetrics, profile, socials } from "@/lib/data";
 import ProfileFlipCard from "./ProfileFlipCard";
 
@@ -81,6 +81,16 @@ export default function Hero() {
               >
                 <Github size={14} />
                 <span>GitHub</span>
+              </a>
+
+              <a
+                href={profile.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-line2 bg-panel/70 px-4 py-3 font-mono text-[11.5px] uppercase tracking-wider text-ink backdrop-blur-sm transition-all hover:border-violet-soft hover:bg-panel2 hover:text-violet-soft"
+              >
+                <FileText size={14} />
+                <span>Resume</span>
               </a>
 
               <a

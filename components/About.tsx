@@ -12,7 +12,7 @@ export default function About() {
       <div className="section-wrap">
         <SectionHeading
           eyebrow="00 / Profile"
-          title="Engineering persona &amp; background"
+          title="About"
           description="A final-year Computer Science engineer at MNNIT Allahabad building at the convergence of high-throughput backend systems and applied generative AI."
         />
 
@@ -85,17 +85,6 @@ export default function About() {
                     <p className="mt-1 font-mono text-[11px] text-violet-soft">
                       Cycle &middot; {profile.gradYear}
                     </p>
-                  </div>
-
-                  {/* Academic Progress Bar */}
-                  <div className="rounded-xl border border-line bg-panel2/40 p-3.5">
-                    <div className="flex items-center justify-between font-mono text-[11px]">
-                      <span className="text-dim">Degree Progress</span>
-                      <span className="font-semibold text-violet-soft">Year 4 of 4 (88%)</span>
-                    </div>
-                    <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-line">
-                      <div className="h-full w-[88%] rounded-full bg-gradient-to-r from-violet-dim via-violet-soft to-amber" />
-                    </div>
                   </div>
                 </div>
               </div>

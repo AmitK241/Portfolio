@@ -105,7 +105,7 @@ export default function Projects() {
       <div className="section-wrap">
         <SectionHeading
           eyebrow="02 / Deploys"
-          title="Production systems &amp; deployments"
+          title="Featured projects"
           description="Six systems shipped end-to-end — adversarial LLM orchestrations, persistent memory layers, and real-time platforms, all live with code public on GitHub."
         />
 
@@ -211,6 +211,14 @@ export default function Projects() {
                         </a>
                       );
                     })}
+
+                    <a
+                      href="/projects/axiom"
+                      className="group flex items-center justify-between rounded-xl border border-line2 bg-panel px-4 py-3 font-mono text-[12px] uppercase tracking-wider text-ink transition-all hover:border-violet-soft hover:text-violet-soft"
+                    >
+                      <span>Case Study</span>
+                      <span className="transition-transform group-hover:translate-x-1">&rarr;</span>
+                    </a>
                   </div>
                 </div>
               </div>

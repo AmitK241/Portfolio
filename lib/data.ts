@@ -1,6 +1,8 @@
 // All content here is sourced directly from Amit's own bio/profile data.
 // Edit this file to update any text across the site.
 
+export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://amitkumar.dev";
+
 export const profile = {
   name: "Amit Kumar",
   role: "Software Engineer · ML Engineer · Gen AI Engineer",
@@ -13,8 +15,8 @@ export const profile = {
   university: "Motilal Nehru National Institute of Technology, Allahabad",
   degree: "B.Tech, Computer Science & Engineering — Final Year",
   gradYear: "2026–27",
-  email: "amitkumarv241@gmail.com",
-  resumeUrl: "#",
+  email: "amitkumar738714@gmail.com",
+  resumeUrl: "/Amit_Kumar_Resume.pdf",
   openTo: [
     "Software Engineer (SDE) — Campus Placements 2026-27",
     "ML Engineer — Applied ML & model deployment",
@@ -29,7 +31,7 @@ export const socials = {
   linkedin: "https://www.linkedin.com/in/amit-kumar-3a602a289",
   leetcode: "https://leetcode.com/u/amit5646/",
   gfg: "https://www.geeksforgeeks.org/user/amitkumbmm0/",
-  email: "mailto:amitkumarv241@gmail.com",
+  email: "mailto:amitkumar738714@gmail.com",
 };
 
 export const liveMetrics = [
@@ -285,15 +287,54 @@ export const education = [
     degree: "B.Tech, Computer Science & Engineering",
     institution: "Motilal Nehru National Institute of Technology, Allahabad",
     period: "Final Year · 2026–27",
-    detail: "Coursework spanning DBMS internals, systems design, and data structures & algorithms.",
+    detail:
+      "Coursework spanning Object-Oriented Programming (OOPs), Operating Systems (OS), Computer Networks (CN), Database Management Systems (DBMS), and Data Structures & Algorithms (DSA).",
   },
 ];
 
-export const certifications = [
+export type Certification = {
+  name: string;
+  issuer: string;
+  date?: string;
+  url?: string; // official verify link, if one exists
+  image?: string; // local /public path, if no verify link exists
+};
+
+export const certifications: Certification[] = [
   {
     name: "Deep Learning & GenAI Exploration",
     issuer: "Coursera",
     url: "https://www.coursera.org/account/accomplishments/verify/YHKOGIRMLV7R",
+  },
+  {
+    name: "Software Engineer Intern — Role Certification",
+    issuer: "HackerRank",
+    date: "Jul 2026",
+    url: "https://www.hackerrank.com/certificates/iframe/23a2987b9fb6",
+  },
+  {
+    name: "JavaScript (Basic) — Skill Certification",
+    issuer: "HackerRank",
+    date: "Jul 2026",
+    url: "https://www.hackerrank.com/certificates/iframe/b254f7d2c031",
+  },
+  {
+    name: "Software Engineer — Role Certification",
+    issuer: "HackerRank",
+    date: "Aug 2026",
+    url: "https://www.hackerrank.com/certificates/iframe/ecd1827576cb",
+  },
+  {
+    name: "ML Empowerment Build Challenge 2.0 — Participation (Axiom)",
+    issuer: "ML Empowerment Foundation",
+    date: "Aug 2026",
+    image: "/certificates/ml-empowerment-axiom.jpg",
+  },
+  {
+    name: "Best AI Project Award — Certificate of Excellence",
+    issuer: "FutureAI Global Hackathon 2026",
+    date: "2026",
+    image: "/certificates/futureai-best-ai-project-award.jpg",
   },
 ];
 
