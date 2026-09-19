@@ -1,80 +1,134 @@
+<div align="center">
+
 # Amit Kumar — Portfolio
 
-A production-ready developer portfolio built with Next.js 14 (App Router), TypeScript, Tailwind CSS, and Framer Motion.
+### Software Engineer · ML Engineer · Gen AI Engineer
 
-**Design concept:** a "systems dashboard" — a live status bar, a boot-sequence hero, and project cards styled as deployed services with status pills. The idea ties directly to the kind of work in the projects section: async pipelines, uptime, and production reliability.
+Final-year CSE @ MNNIT Allahabad — building production-grade multi-agent AI systems,
+RAG pipelines, and full-stack MERN platforms.
 
-## Stack
+[![Live Site](https://img.shields.io/badge/Live-Visit_Site-6D5EF5?style=for-the-badge&logo=vercel&logoColor=white)](https://portfolio-pink-nine-u94pgycalv.vercel.app)
+[![GitHub](https://img.shields.io/badge/GitHub-AmitK241-181717?style=for-the-badge&logo=github)](https://github.com/AmitK241)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/amit-kumar-3a602a289)
 
-- **Next.js 14** (App Router) + **TypeScript**
-- **Tailwind CSS** for styling (custom design tokens in `tailwind.config.ts`)
-- **Framer Motion** for scroll-triggered and load animations
-- **lucide-react** for icons
-- Self-hosted fonts via `@fontsource` (Space Grotesk, Inter, JetBrains Mono) — no external font requests at build or runtime, so it builds cleanly even without access to Google Fonts
+</div>
 
-> Note on shadcn/ui: the brief asked for shadcn/ui, but this build hand-rolls small, dependency-free primitives in `components/ui.tsx` (`SectionHeading`, `Badge`, `StatusPill`) in the same spirit — plain Tailwind, no Radix/shadcn CLI scaffolding. If you want the actual shadcn/ui component library wired in, run `npx shadcn@latest init` and swap these primitives for generated ones.
+<br/>
 
-## Getting started
+<div align="center">
+  <img src="./public/og-preview.png" alt="Portfolio preview" width="85%" />
+  <br/><sub>Replace this with an actual screenshot of the deployed site before publishing.</sub>
+</div>
+
+<br/>
+
+## About this project
+
+A personal developer portfolio built as a **"systems dashboard"** — instead of a
+generic template, the whole site is styled like a live telemetry monitor: a
+status bar with real uptime/latency readouts, a boot-sequence hero, and project
+cards that look like deployed services. The design is a deliberate reflection of
+the kind of work showcased inside it — async pipelines, production reliability,
+and multi-agent orchestration.
+
+## ✨ Features
+
+| | |
+|---|---|
+| 🎨 **4 distinct themes** | Dark, Light, Matrix (terminal-green), and Paper (editorial serif) — full re-skins, not just palette swaps |
+| 🖼️ **Interactive flip-card profile** | Front/back 3D flip with photo + quick-connect details |
+| 📊 **Live GitHub telemetry** | Followers, repos, and stars fetched client-side from the GitHub API in real time |
+| 🗂️ **Bento-grid project showcase** | Featured flagship project + 5 supporting projects, each with live/demo/submitted status |
+| 🎓 **Certifications gallery** | Verified-link certs (HackerRank, Coursera) + image-based lightbox certs |
+| 💬 **"Ask about Amit" assistant** | Floating chat widget that answers common recruiter questions via local keyword-matching over this repo's own data — no external API, fully static |
+| 📍 **Location radar widget** | Hover-to-reveal coordinates card |
+| ♿ **Accessible** | ARIA labels, keyboard navigation, focus states, `prefers-reduced-motion` support throughout |
+| ⚡ **Fully static** | No backend, no database — builds to static HTML, deployable anywhere |
+
+## 🛠️ Tech stack
+
+<div align="center">
+
+![Next.js](https://img.shields.io/badge/Next.js_14-000000?style=flat-square&logo=next.js&logoColor=white)
+![React](https://img.shields.io/badge/React_18-61DAFB?style=flat-square&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=flat-square&logo=framer&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
+
+</div>
+
+- **Framework:** Next.js 14 (App Router) + TypeScript
+- **Styling:** Tailwind CSS with a CSS-variable-driven theme system (`app/globals.css`)
+- **Animation:** Framer Motion — scroll reveals, 3D tilt cards, spring physics
+- **Fonts:** Self-hosted via `@fontsource` (Space Grotesk, Inter, JetBrains Mono, Fraunces) — zero external font requests, so it builds offline/in CI
+- **Icons:** Lucide React
+- **Deployment:** Vercel
+
+## 📂 Project structure
+
+```
+.
+├── public/                  # Static assets, certificate images
+├── src/
+│   ├── app/                 # Next.js App Router — pages, layout, SEO (sitemap, robots)
+│   ├── components/          # All UI components (Hero, Projects, Nav, AskAssistant, ...)
+│   └── lib/
+│       ├── data.ts          # Single source of truth for all site content
+│       └── assistant.ts     # Local Q&A knowledge base for the Ask Assistant widget
+├── tailwind.config.ts       # Design tokens (theme-aware CSS variables)
+└── package.json
+```
+
+**To update any content on the site** (bio, projects, skills, certifications,
+achievements) — edit `src/lib/data.ts`. No component code changes needed.
+
+## 🚀 Getting started
 
 ```bash
+# Clone
+git clone https://github.com/AmitK241/Portfolio.git
+cd Portfolio
+
+# Install
 npm install
+
+# Run locally
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Editing content
-
-Every piece of copy on the site — bio, skills, projects, timeline, education, achievements, socials — lives in **`lib/data.ts`**. Edit that one file to update the whole site; no need to touch component code for content changes.
-
-To add a new project, add an entry to the `projects` array in `lib/data.ts` with a unique `slug`.
-
-## Project structure
-
-```
-app/
-  layout.tsx        Root layout, fonts, SEO metadata
-  page.tsx           Assembles all sections
-  globals.css         Design tokens, base styles, grid background
-components/
-  StatusBar.tsx       Fixed live status strip (signature element)
-  Nav.tsx             Scroll-spy navigation
-  Hero.tsx            Boot-sequence hero panel
-  About.tsx
-  Skills.tsx          Stack matrix + proficiency bars
-  Projects.tsx        Project "service" cards
-  Timeline.tsx        Hackathon / experience timeline
-  EducationAndAchievements.tsx
-  CurrentFocus.tsx    Currently learning / building
-  Contact.tsx
-  Footer.tsx
-  ui.tsx              Shared primitives (SectionHeading, Badge, StatusPill)
-lib/
-  data.ts             ALL site content lives here
-```
-
-## Deployment
-
-The fastest path is **Vercel** (built by the same team as Next.js):
-
-1. Push this repo to GitHub.
-2. Go to [vercel.com/new](https://vercel.com/new) and import the repo.
-3. Vercel auto-detects Next.js — no config needed. Deploy.
-
-Alternatively:
-
 ```bash
+# Production build
 npm run build
 npm run start
+
+# Lint
+npm run lint
 ```
 
-works on any Node host (Render, Railway, a VPS, etc.).
+## 🌐 Deployment
 
-## Before you ship
+Deployed on **Vercel** — pushes to `main` deploy automatically. To deploy your
+own copy:
 
-- [ ] Swap `resumeUrl: "#"` in `lib/data.ts` for a real hosted resume link (or add a `resume.pdf` to `public/` and point to `/resume.pdf`)
-- [ ] Set a real domain in `app/layout.tsx` (`siteUrl`) for correct Open Graph / canonical URLs
-- [ ] Add a proper OG image (`public/og-image.png`, 1200×630) and reference it in `metadata.openGraph.images`
-- [ ] Add a `favicon.ico` / `icon.png` to `app/` (Next.js picks these up automatically)
-- [ ] DocuMind links to your GitHub profile rather than a specific repo — update it in `lib/data.ts` once it has its own public repo URL
-- [ ] Wire the "Get in touch" mail link to whichever inbox you check for placements
+1. Push this repo to your GitHub.
+2. Import it at [vercel.com/new](https://vercel.com/new) — Next.js is
+   auto-detected, no configuration needed.
+
+## 📬 Contact
+
+Open to **SDE, ML Engineer, and Gen AI Engineer** roles — 2026–27 campus
+placement cycle.
+
+- **Email:** [amitkumarv7880@gmail.com](mailto:amitkumarv7880@gmail.com)
+- **LinkedIn:** [amit-kumar-3a602a289](https://www.linkedin.com/in/amit-kumar-3a602a289)
+- **GitHub:** [@AmitK241](https://github.com/AmitK241)
+- **LeetCode:** [amit5646](https://leetcode.com/u/amit5646/)
+
+---
+
+<div align="center">
+<sub>Built by Amit Kumar with Next.js, Tailwind CSS & Framer Motion.</sub>
+</div>
