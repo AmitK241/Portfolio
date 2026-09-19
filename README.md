@@ -1,19 +1,36 @@
 <div align="center">
 
-# Amit Kumar — Portfolio
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:6D5EF5,50:8B7FFF,100:F5A623&height=200&section=header&text=Amit%20Kumar&fontSize=56&fontColor=ffffff&fontAlignY=40&desc=Software%20Engineer%20%C2%B7%20ML%20Engineer%20%C2%B7%20Gen%20AI%20Engineer&descAlignY=58&descAlign=50&animation=fadeIn" width="100%"/>
 
-### Software Engineer · ML Engineer · Gen AI Engineer
+<br/>
 
-Final-year CSE @ MNNIT Allahabad — building production-grade multi-agent AI systems,
-RAG pipelines, and full-stack MERN platforms.
+<a href="https://git.io/typing-svg">
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=18&duration=3000&pause=1000&color=8B7FFF&center=true&vCenter=true&width=600&lines=Final-year+CSE+%40+MNNIT+Allahabad;Building+multi-agent+AI+systems+%26+RAG+pipelines;Production+MERN+platforms+that+stay+up+under+load" alt="Typing SVG" />
+</a>
 
-[![Live Site](https://img.shields.io/badge/Live-Visit_Site-6D5EF5?style=for-the-badge&logo=vercel&logoColor=white)](https://portfolio-pink-nine-u94pgycalv.vercel.app)
-[![GitHub](https://img.shields.io/badge/GitHub-AmitK241-181717?style=for-the-badge&logo=github)](https://github.com/AmitK241)
+<br/><br/>
+
+[![Live Demo](https://img.shields.io/badge/LIVE-Visit_Site-6D5EF5?style=for-the-badge&logo=vercel&logoColor=white)](https://portfolio-pink-nine-u94pgycalv.vercel.app)
+[![GitHub](https://img.shields.io/badge/GitHub-AmitK241-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/AmitK241)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/amit-kumar-3a602a289)
+[![Email](https://img.shields.io/badge/Email-Reach_Out-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:amitkumarv241@gmail.com)
+
+<br/>
+
+<img src="https://komarev.com/ghpvc/?username=AmitK241&repo=Portfolio&label=Repo%20Views&color=6D5EF5&style=flat-square" alt="repo views" />
 
 </div>
 
 <br/>
+
+<div align="center">
+  <img src="./public/og-preview.png" alt="Portfolio preview" width="90%" />
+  <br/>
+</div>
+
+<br/>
+
+---
 
 <div align="center">
   <img src="./public/og-preview.png" alt="Portfolio preview" width="85%" />
