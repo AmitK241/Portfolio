@@ -28,17 +28,6 @@
   <br/>
 </div>
 
-<br/>
-
----
-
-<div align="center">
-  <img src="./public/og-preview.png" alt="Portfolio preview" width="85%" />
-  <br/><sub>Replace this with an actual screenshot of the deployed site before publishing.</sub>
-</div>
-
-<br/>
-
 ## About this project
 
 A personal developer portfolio built as a **"systems dashboard"** — instead of a
